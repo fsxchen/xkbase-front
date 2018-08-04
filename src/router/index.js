@@ -4,16 +4,20 @@ import Home from '@/views/Home'
 import Login from '@/views/Login'
 import Account from '@/views/Account'
 
+import store from '../store/index'
 Vue.use(Router)
 
 
 const ifAuthenticated = (to, from, next) => {
-  // if (store.getters.isAuthenticated) {
-    if (0) {
+  console.log(store.state, "user_state")
+  store.commit('GET_USERINFO')
+  if (store.state.user.isAuthorized) {
+    // if (0) {
     next()
     return
   }
-  next('/login')
+  console.log(to)
+  next('/login' + '?next='+to.path)
 }
 
 export default new Router({

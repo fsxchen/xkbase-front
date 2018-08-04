@@ -1,16 +1,23 @@
 <template>
   <div class="home">
-    home
+    {{userInfo.username}}
     
   </div>
 </template>
 
 <script>
+import store from "../store"
+
 export default {
   name: 'Account',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  computed: {
+    userInfo() {
+      return store.state.user.userInfo
     }
   }
 }
